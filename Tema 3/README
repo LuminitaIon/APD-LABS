@@ -1,0 +1,32 @@
+Tema 3 APD 2020-2021: Procesor de text
+
+1. Workflow:
+
+- am declarat global doua structuri pentru master (master_arg) si 
+pentru workeri (worker_arg) pentru a parsa campurile de care am 
+nevoie in implementarea functiilor workes_function si master_function;
+
+- pentru imeplementare am ales sa folosesc un unordered map dintre id-ul
+paragrafului (counter pentru a retine ordinea in care sunt redate paragrafelor)
+si o pereche formata din tipul paragrafului (specificat ca titlu) si continutul
+acestuia (adica efectiv paragraful);
+
+- am modularizat tema astfel incat sa cuprinda logica pentru workeri si logica
+pentru nodul master;
+
+- in functia de workeri, in functie de tipul paragrafului citit, procesez textul
+in functie de cerintele tipului prezentate in enunt;
+
+- in functia master, se face citirea in paralel a paragrafelor, iar pentru a insera
+in map id-ul paragrafului primit de la thread-ul genului aferent si (titlul,
+continutul), trebuie sa sincronizez aceasta operatie si am ales sa folosesc un mutex.
+Titlul il determin in functie de rank-ul specific genului de paragraf.
+
+
+
+2. Scalabilitate:
+
+- conform checker-ului, programul scaleaza;
+- in master deschid 
+- deschid cate 4 thread-uri master si workerii
+deschid cate numarul maxim de thread-uri fiecare exact ca in enunt.
